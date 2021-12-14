@@ -165,10 +165,12 @@ func SecondPart(input []string) {
 		game.Mark(game.drawn[i])
 		bingo, index := game.Check()
 
-		if bingo {
+		for bingo {
 			lastBoard = game.boards[index]
 			lastValue = game.drawn[i]
 			game.boards = append(game.boards[:index], game.boards[index + 1:]...)
+
+			bingo, index = game.Check()
 		}
 	}
 	f.Println("BINGO!")
